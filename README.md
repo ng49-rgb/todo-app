@@ -9,6 +9,8 @@ A simple Flask + SQLAlchemy todo application with create, update, delete, and se
 - Search tasks by title
 - Display dates in dd-mm-yyyy format
 
+## DEMO LINK: https://todo-app-o1n9.onrender.com/
+
 ## Requirements
 blinker==1.9.0
 click==8.4.2
