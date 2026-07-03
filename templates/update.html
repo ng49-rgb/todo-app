@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="hero text-center mb-5">
+    <h1 class="display-5 fw-bold">✏️ Update Task</h1>
+    <p class="lead">Modify your task details.</p>
+  </div>
+
+  <div class="card shadow-lg todo-card" style="max-width: 600px; margin: 0 auto;">
+    <div class="card-header py-3">
+      <h3 class="mb-0">Edit Task #{{ todo.sno }}</h3>
+    </div>
+
+    <div class="card-body">
+      <form action="/update/{{ todo.sno }}" method="POST">
+        <div class="mb-3">
+          <label for="update-title" class="form-label">Title</label>
+          <input
+            id="update-title"
+            type="text"
+            class="form-control"
+            name="title"
+            value="{{ todo.title }}"
+            placeholder="Enter task title"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="update-desc" class="form-label">Description</label>
+          <textarea
+            id="update-desc"
+            class="form-control"
+            rows="4"
+            name="desc"
+            placeholder="Enter task description"
+          >{{ todo.desc or '' }}</textarea>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-success">Save Changes</button>
+          <a href="/" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card mt-4 shadow-lg" style="max-width: 600px; margin: 0 auto; background-color: #f8f9fa;">
+    <div class="card-body">
+      <p class="text-muted mb-0">
+        <strong>Created:</strong> {{ format_date(todo.date_created) }}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

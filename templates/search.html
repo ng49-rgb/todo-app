@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="hero text-center mb-5">
+    <h1 class="display-5 fw-bold">🔎 Search Tasks</h1>
+    <p class="lead">Search tasks by title only.</p>
+  </div>
+
+  <div class="card shadow-lg todo-card" style="max-width: 700px; margin: 0 auto;">
+    <div class="card-body">
+      <form action="/search" method="GET" class="d-flex gap-2">
+        <input
+          type="text"
+          class="form-control"
+          name="search"
+          value="{{ search_query }}"
+          placeholder="Search tasks..."
+          required
+        />
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card mt-5 shadow-lg">
+    <div class="card-header py-3">
+      <h3 class="mb-0">Search Results</h3>
+    </div>
+    <div class="card-body">
+      {% if search_query %}
+        {% if todos|length == 0 %}
+          <div class="empty">
+            <h4>No matching tasks found</h4>
+            <p>Try another task title.</p>
+          </div>
+        {% else %}
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Date Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for todo in todos %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ todo.title }}</td>
+                  <td>{{ todo.desc }}</td>
+                  <td>{{ format_date(todo.date_created) }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="empty">
+          <h4>Use the search box above</h4>
+          <p>Enter a task title to find your task.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

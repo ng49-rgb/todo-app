@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+  <div class="hero text-center mb-5">
+    <h1 class="display-5 fw-bold">📝 Flask Todo App</h1>
+    <p class="lead">Manage your daily tasks efficiently.</p>
+  </div>
+
+  <div class="card shadow-lg todo-card">
+    <div class="card-header py-3">
+      <h3 class="mb-0">Add New Task</h3>
+    </div>
+
+    <div class="card-body">
+      <!-- FORM -->
+      <form action="/" method="POST">
+        <div class="mb-3">
+          <label for="task-title" class="form-label">Title</label>
+
+          <input
+            id="task-title"
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Enter task title"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="task-desc" class="form-label">Description</label>
+
+          <textarea
+            id="task-desc"
+            class="form-control"
+            rows="4"
+            name="desc"
+            placeholder="Enter task description"
+          ></textarea>
+        </div>
+
+        <button class="btn btn-primary">Add Task</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card mt-5 shadow-lg">
+    <div class="card-header py-3">
+      <h3 class="mb-0">Your Tasks</h3>
+    </div>
+
+    <div class="card-body">
+      <!-- Flask -->
+      {% if allTodo|length == 0 %}
+
+      <div class="empty">
+        <h4>No Tasks Found 😴</h4>
+        <p>Add your first task above.</p>
+      </div>
+
+      {% else %}
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>S.NO.</th>
+
+              <th>Title</th>
+
+              <th>Description</th>
+
+              <th>Date Created</th>
+
+              <th width="180">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- Jinja 2 -->
+
+            {% for todo in allTodo %}
+
+            <tr>
+              <td>{{ loop.index }}</td>
+
+              <td>{{ todo.title }}</td>
+
+              <td>{{ todo.desc }}</td>
+
+              <td>{{ format_date(todo.date_created) }}</td>
+
+              <td>
+                <a href="/update/{{todo.sno}}" class="btn btn-warning btn-sm">
+                  Update
+                </a>
+
+                <a href="/delete/{{todo.sno}}" class="btn btn-danger btn-sm">
+                  Delete
+                </a>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<footer class="bg-dark text-light text-center py-3 mt-5">
+  <p>&copy; Todo App BY NAVEEN GUPTA | All rights reserved.</p>
+</footer>
+
+{% endblock %}

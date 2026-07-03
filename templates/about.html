@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="hero text-center mb-5">
+    <h1 class="display-5 fw-bold">About This App</h1>
+    <p class="lead">A simple Flask todo app for managing daily tasks.</p>
+  </div>
+
+  <div class="card shadow-lg todo-card" style="max-width: 700px; margin: 0 auto;">
+    <div class="card-body">
+      <p class="mb-3">
+        This app lets you create, update, delete, and search todos with a clean Bootstrap interface.
+      </p>
+      <p class="mb-0 text-muted">
+        Built with Flask, SQLAlchemy, and Jinja templates.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

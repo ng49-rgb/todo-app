@@ -1,0 +1,9 @@
+if fetch_api.call() is used (by javascript), 
+it will return a promise that resolves to the response of the request. 
+If not used, it will return an error indicating that fetch_api is not defined.
+
++
+
+avoids reloading the page after deleting a todo item, 
+which can be inefficient and may cause the user to lose their place in the list. 
+Instead, you can use JavaScript to remove the deleted item from the DOM without reloading the page.
